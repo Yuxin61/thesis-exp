@@ -132,3 +132,16 @@ psql postgres://postgres:12345678@localhost:5432/proshop
 ```
 
 
+
+## JDK
+
+https://openjdk.org/install/
+
+**OpenJDK 8**
+
+-   https://adoptium.net/temurin/nightly/?version=8
+
+**OpenJDK 9+**
+
+-   https://jdk.java.net/archive/
+-   https://jdk.java.net/\<version\>
