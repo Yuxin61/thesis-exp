@@ -133,6 +133,65 @@ psql postgres://postgres:12345678@localhost:5432/proshop
 
 
 
+## Tools
+
+### EvoMaster
+
+Dependencies: Java version 8 or later, Maven
+
+Build & Install: 
+
+```shell
+git clone https://github.com/EMResearch/EvoMaster.git
+cd EvoMaster
+mvn clean install -DskipTests
+```
+
+Black-Box Testing Command
+
+```shell
+java -jar core/target/evomaster.jar  --blackBox true --bbSwaggerUrl https://api.apis.guru/v2/openapi.yaml  --outputFormat JAVA_JUNIT_4 --maxTime 30s --ratePerMinute 60 --outputFolder ../src_evo/src/test/java
+```
+
+- `java -jar core/target/evomaster.jar`，编译完成后的Jar包，位于`EvoMaster/core/target/`下；
+- `--blackBox true`，默认是白盒，使用该选项设置为黑盒；
+- `--bbSwaggerUrl ...`，OpenApi/Swagger Spec，服务器地址为文档中的`host`或`servers`参数，如果没有则默认为本地，也可以通过`--bbTargetUrl`指定，该选项会覆盖spec中的参数；
+- `--outputFormat JAVA_JUNIT_4`，测时生成方式，必须指定，这里在Java中使用JUnit4；
+- `-maxTime 30s`，搜索时间，一般可分别搜索`10m`、`1h`、`24h`；
+- `--ratePerMinute 60`，避免频繁的调用被检测为DoS攻击，这里每秒钟调用1次；
+- `--outputFolder ../src_evo/src/test/java`，测试用例输出目录。
+
+Artifact：==./evomaster-apisguru==
+
+- 生成用例可运行：
+  
+  - [x] 是
+  - [ ] 否
+  
+- 运行脚本：
+
+  ```shell
+  ...
+  ```
+
+
+
+### Schemathesis
+
+
+
+### RESTler
+
+
+
+### APIFuzzer
+
+
+
+### Dredd
+
+
+
 ## JDK
 
 https://openjdk.org/install/
