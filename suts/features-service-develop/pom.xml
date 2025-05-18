@@ -11,6 +11,7 @@
     <properties>
         <querydsl.version>3.7.2</querydsl.version>
         <swaggerjersey.version>1.5.8</swaggerjersey.version>
+        <jacoco.version>0.8.12</jacoco.version>
     </properties>
 
 
@@ -72,6 +73,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
+                    <configuration>
+                        <jvmArguments>
+                            -javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${jacoco.version}/org.jacoco.agent-${jacoco.version}-runtime.jar=destfile=${project.build.directory}/jacoco.exec
+                        </jvmArguments>
+                    </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -99,6 +105,28 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <phase>integration-test</phase>
+                    </execution>
+
+                    <execution>
+                    <id>report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <phase>post-integration-test</phase>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
